@@ -1,167 +1,224 @@
-# DeckFit AI — Room-aware presentation preflight
+# DeckFit AI
 
-Published source: **RC5.3 FINAL-01 r2**, imported from the qualified release archive. This repository preserves the application's existing provenance; it is not a claim that the software was newly written for this repository.
+### Prepare your slides for the actual room.
 
-DeckFit checks supported editable PowerPoint text against room geometry, proposes bounded font scaling, requires exact human approval, and independently verifies the saved copy. It does not guarantee human readability or accessibility certification.
+A deck that looks comfortable on a laptop can put small text on a distant classroom screen. DeckFit AI brings **active image height and farthest-viewer distance** into PowerPoint preflight, then offers a deliberately narrow repair workflow: simulate bounded font changes, get exact human approval, modify a copy, and independently verify the saved result.
 
-- [Release identity, qualification and operational limitations](docs/RELEASE_HANDOFF_RC53_R2.md)
-- [FINAL-01 compatibility refusal policy](docs/FINAL01_COMPATIBILITY_POLICY.md)
-- [Live DeckFit service](https://deckfit-ai-production.up.railway.app/) — separately checked on October 15, 2026; recheck source identity after any deployment.
-- [This repository](https://github.com/saikiranpulagalla/deckfit-venue-preflight)
+Built for the customer hypothesis of **independent classroom trainers and small training organizations** delivering text-heavy decks repeatedly across different venues.
 
-Gemini is optional. The demonstrated workflow used deterministic planning; no genuine Gemini invocation is claimed for this release evidence.
+[Try the hosted demo](https://deckfit-ai-production.up.railway.app/) · [Run locally](#run-locally) · [Release evidence](#release-identity-and-evidence) · [Safety policy](docs/FINAL01_COMPATIBILITY_POLICY.md)
 
-For local setup, install Python 3.12 and the dependencies in `backend/pyproject.toml`. Real rendering requires LibreOffice Impress, DejaVu fonts, and PyMuPDF. The existing Dockerfile supplies these Linux dependencies. Run `python scripts/compute_source_fingerprint.py` under Linux to check the source identity, and `python scripts/release_gate.py --full` for the complete unchanged test gate.
+> **Scope, not a readability guarantee.** DeckFit evaluates supported text-height geometry against a versioned reference profile. It does not measure contrast, lighting, comprehension, individual vision, or overall accessibility, and does not certify a presentation. A hosted URL or release label is not proof of the running source; use the source-bound verifier below.
 
-<details>
-<summary>Historical README retained from the qualified source (older links and release claims are historical, not current deployment evidence)</summary>
+## The product in one minute
 
-**Next Founders Hackathon · Early startup MVP · Release candidate, not yet publicly deployed**
+1. Start the built-in demo or upload a supported `.pptx`.
+2. Enter the **active projected/displayed image height**, not the screen's diagonal, and the **farthest viewer distance**, in meters. Indicate whether measurements are measured or estimated.
+3. Analyze the deck. Inspect below-target text, structural coverage, unsupported visible content, and candidate tradeoffs.
+4. Generate a plan. Review the selected server-owned candidate IDs, scale factors, simulation evidence, rationale, and actual planner provenance.
+5. Explicitly approve the exact current plan. Changing the analyzed inputs requires a fresh plan and approval.
+6. Let DeckFit apply eligible changes to a copy, reopen it, render it with LibreOffice, and check the saved artifact.
+7. Inspect the final state, download the output, and delete the session when finished.
 
-DeckFit AI helps recurring training presenters check *supported PowerPoint text-height geometry* against the actual screen height and farthest-viewer distance, review bounded candidate font changes, and download an independently checked copy after human approval.
+For a reproducible starting example, use the built-in demo with **1.8 m image height** and **10.8 m farthest-viewer distance**. These are test inputs, not measurements of your room. Deterministic planning works without an API key.
 
-It does **not** measure contrast, lighting, cognitive or individual readability, nor does it edit charts, images, diagrams, titles, or arbitrary slide content. Speaker notes and metadata are preserved, not sanitized. External linked resources are rejected at upload. Results near reference-band boundaries require care.
+## Why not just increase every font size?
 
-[Latest local QA and deployment handoff](docs/NEXT_FOUNDERS_QA_STAGE.md) · [Historical public app (may run an older build)](https://venue-agent-production.up.railway.app/) · [Repository](https://github.com/saikiranpulagalla/deckfit-ai) · [Next Founders release checklist](docs/NEXT_FOUNDERS_IMPLEMENTATION.md)
+Blind scaling can alter titles, cause overflow, or leave unsupported content outside the check. DeckFit connects the room measurements to an inspectable, bounded decision and checks the actual saved copy rather than declaring success from a proposed edit.
 
-> **Source-of-truth warning:** Previous R8.1 and ForgeHacks public-run claims below describe **historical releases**, not this new source tree. New runtime/deployment claims require a fresh verified build and public check; this ZIP is not proof of live deployment.
+| Manual task | DeckFit's bounded contribution |
+|---|---|
+| Decide what “too small” means for this venue | Explicit room geometry and a versioned text-height reference |
+| Decide which edits are acceptable | Server-generated, pre-simulated candidate choices |
+| Keep control of the presentation | Exact human approval; original upload preserved |
+| Check whether the edit really worked | Reopen, independent render, package and output verification |
+| Decide what cannot be assessed | Explicit refusal or review-required outcomes |
 
-## The problem
+This is a workflow distinction, not a claim that no competing tool offers similar capabilities.
 
-Presentation authors normally design at laptop distance, while audiences see a physically bounded display from real viewing distances. Existing tools understand the slide but do not make the venue's active image height and farthest viewer distance part of the design loop.
+## What is supported—and what is not
 
-DeckFit AI makes those physical inputs explicit for a deliberately narrow, inspectable set of editable PowerPoint text. It does not claim universal readability, accessibility certification, AVIXA certification, or renderer equivalence with Microsoft PowerPoint.
+The only automatic edit is bounded **`SCALE_TEXT` on eligible supported body text with explicit font sizing**. DeckFit does not rewrite slide content or generally redesign presentations.
 
-## The solution
+- Titles and headings are protected from automatic mutation.
+- Charts, diagrams, SmartArt, tables, images/image text, media, ambiguous mappings, and uncertain formatting are not automatically repaired. Unsupported content can require review or refusal.
+- Text, slide/package relationships, images, backgrounds, and notes must remain protected by the applicable integrity checks. Notes and metadata are preserved, **not sanitized**.
+- External links and dangerous unsupported inputs are rejected under intake policy.
+- A result near a reference boundary, outside the reference domain, or based on estimated measurements deserves additional human judgment.
+- LibreOffice rendering is independent evidence, not a guarantee of identical Microsoft PowerPoint rendering. Open the downloaded copy in the intended presentation environment before use.
 
-1. Upload a PPTX or start the project-owned demo.
-2. Provide active display height and farthest viewing distance.
-3. Analyze supported structural text against a versioned viewing-demand reference profile.
-4. Generate deterministic, bounded repair candidates.
-5. Let Gemini recommend only legal candidate selections.
-6. Simulate and deterministically validate the proposed plan.
-7. Require approval of the exact source, plan, constraints, and simulation snapshot.
-8. Modify a copy of the PowerPoint—never the original.
-9. Reopen, rerender, and independently verify the saved artifact.
-10. Download the verified output or receive an explicit review/failure state.
+**What `VERIFIED` means:** the saved output passed the implemented structural, package, rendering, and coverage postconditions for the supported scope. It does not certify every visual property or every audience member's experience. `REVIEW_REQUIRED` is not a successful verification, and an HTTP 200 alone is not proof of a verified result. Completed outputs remain immutable within the session; replanning/reanalysis is rejected.
 
-## Why AI is meaningfully involved
+### FINAL-01: compatibility content fails closed
 
-Runtime model: operator-configured `GEMINI_MODEL`; default in source is `gemini-3.8-flash`. Gemini is optional and the deterministic planner remains available.
+RC5.2 had a confirmed false-`VERIFIED` defect: visible objects inside `mc:AlternateContent` could escape the structural inventory. **Do not substitute RC5.2 for this release.**
 
-Gemini is a constrained planner, not an editor or verifier. It receives derived planning metadata: server-owned candidate IDs, candidate operation/scale, pre-simulation evidence, aggregate counts, and explicit constraints. It does **not** receive raw PPTX bytes, uploaded slide text, screenshots, or speaker notes in this competition build.
+RC5.3 FINAL-01 r2 rejects namespace-qualified compatibility wrappers anywhere in slide, layout, or master XML at intake, including relocated layout/master parts identified by content type. It does not trust `slide.shapes` traversal to discover them, select a branch, or flatten the file.
 
-The model may return only `selected_candidate_ids` and a rationale. The server independently validates every selected ID, recomputes consequential state, requires human approval, applies only the already-approved bounded operation, and verifies the reopened saved file. Invalid, duplicate, late, or unsafe model output fails closed or uses the deterministic fallback. Gemini cannot invent a font size, rewrite slide text, modify a title, approve a plan, or declare a result verified.
+This deliberately rejects some legitimate presentations—including empty or metadata-only wrappers, hidden slides, and unused layouts/masters. The application will not silently normalize them. See the [compatibility policy](docs/FINAL01_COMPATIBILITY_POLICY.md) and [permanent regression tests](backend/tests/adversarial/test_final01_compatibility.py).
 
-## Architecture
+## Architecture and trust boundaries
 
 ```mermaid
 flowchart LR
-    A[PPTX intake] --> B[Structural analysis<br/>python-pptx]
-    G[Venue geometry<br/>and reference profile] --> C[Candidate generation]
-    B --> C
-    C --> D[Simulation]
-    D --> E[Gemini recommendation<br/>legal IDs only]
-    E --> F[Deterministic validation]
-    F --> H[Exact human approval]
-    H --> I[Copy-only mutation]
-    I --> J[Reopen + render<br/>LibreOffice + PyMuPDF]
-    J --> K[Independent verification]
-    K --> L[Private download]
+    I[Bounded PPTX intake] --> A[Structural analysis]
+    R[Room measurements] --> A
+    A --> C[Server-owned candidates + simulation]
+    C --> P[Deterministic planner or optional Gemini selector]
+    P --> V[Deterministic plan validation]
+    V --> H[Exact human approval]
+    H --> M[Copy-only font scaling]
+    M --> O[Reopen + LibreOffice render + verification]
+    O --> D[Authorized download or explicit review/refusal]
 ```
 
-- **FastAPI / Pydantic** provide the capability-protected API and state contracts.
-- **python-pptx** inspects supported editable PowerPoint structure and performs the bounded copy-only mutation.
-- **LibreOffice Impress** renders artifacts independently of structural predictions.
-- **PyMuPDF** measures rendered PDF evidence.
-- **Gemini** recommends from a finite set of server-approved, pre-simulated candidates.
-- **The session store** isolates ephemeral artifacts and authorizes each operation with a session capability.
+FastAPI/Pydantic provide API and state contracts; python-pptx handles supported structure and bounded edits; LibreOffice Impress and PyMuPDF provide rendered evidence. The static frontend is served by the backend. Sessions are ephemeral and capability-protected.
 
-## What makes DeckFit AI different
+### AI is an optional selector, never the authority
 
-- It treats the physical venue as an input to presentation design.
-- AI chooses among constrained, pre-simulated repair options rather than generating editing commands.
-- A human must approve the exact plan.
-- The original PPTX is preserved; only a copy can be modified.
-- Success is determined by reopening and independently verifying the saved artifact.
-- Unsupported or uncertain content stays explicit and review-only instead of silently becoming a pass.
+Gemini receives derived planning metadata: finite candidate IDs, permitted operations/scales, simulation evidence, aggregate counts, and constraints—not raw PPTX bytes, uploaded slide text, screenshots, or speaker notes in this build. It can recommend candidate IDs and a rationale; the server validates the choices. Gemini cannot invent an edit, approve a plan, execute mutations, or declare verification.
 
-## Live demo
+Timeouts, invalid responses, and provider failures have bounded handling and deterministic fallback. Inspect `planner_used`, `fallback_used`, and the displayed rationale rather than inferring provider success from a configured model name.
 
-The current public service is [venue-agent-production.up.railway.app](https://venue-agent-production.up.railway.app/). It previously ran an R8.1 release under the historical internal service name **Venue Agent**; the current hosted version must be rechecked after deployment. This repository's documentation is newer public branding only; it does not assert that the deployed frontend was renamed.
+**Evidence boundary:** the qualified workflow used deterministic planning. Genuine Gemini execution is not established by that evidence. `.env.example` documents optional configuration; a configured model ID does not establish current provider availability, quota, or successful invocation. Never commit API keys.
 
-Suggested judge path: **Try demo venue → Analyze → Inspect candidates → Plan → Approve → Apply → Verify → Download → Delete session**.
+## Run locally
 
-## Supported scope and limitations
+### Recommended: the existing Linux container
 
-The only supported automatic mutation is bounded `SCALE_TEXT` for eligible ordinary body text.
+Requirements: a running Docker engine and enough local resources for LibreOffice. From the repository root:
 
-- Titles and headings are protected from automatic modification.
-- Diagrams, images and image text, charts, SmartArt, tables, media, uncertain formatting, and ambiguously mapped content remain review-only.
-- Semantic rewriting is not supported.
-- `VERIFIED` means defined structural postconditions passed on the reopened saved artifact. It is not a claim about subjective readability for every person or an accessibility certification.
+```bash
+docker build -t deckfit-ai:rc53-r2 .
+docker run --rm --name deckfit-local -p 127.0.0.1:8000:8000 deckfit-ai:rc53-r2
+```
 
-## Historical R8.1 technical validation (not a validation of this revision)
+Open [http://127.0.0.1:8000](http://127.0.0.1:8000). No Gemini key is required. The Dockerfile uses Ubuntu 24.04, installs LibreOffice Impress and DejaVu fonts, enforces its configured Ubuntu LibreOffice security-package floor, and starts one Uvicorn worker as a non-root user. A new build resolves packages at build time; record the actual versions and image identity if reproducing a release.
 
-The following results apply to the validated **R8.1 runtime source**, release `r8.1-ab6a6752be613137`, digest `ab6a6752be613137c7565601d8a31d6194862776a709d72b70cdee0ae5759b73`:
+In another terminal, inspect real health separately from process status:
 
-- 186 tests collected; 150 non-resource tests passed.
-- Mandatory isolated LibreOffice adversarial/resource tests passed.
-- HTTP smoke, Python compilation, frontend syntax, and claim lint passed.
-- A strict public deployment check passed with `gemini-3.5-flash-lite`.
-- Five independent public planner sessions used Gemini with zero deterministic fallbacks.
-- The downloaded PowerPoint SHA-256 matched the server's independently verified output SHA-256; deletion made the session inaccessible.
+```bash
+docker inspect --format '{{.State.Health.Status}}' deckfit-local
+curl --fail http://127.0.0.1:8000/health
+curl --fail http://127.0.0.1:8000/health/readiness
+curl --fail http://127.0.0.1:8000/health/deep-readiness
+```
 
-This GitHub publication changes documentation and public branding only. Its publication digest is recorded separately from the runtime digest; the historical runtime evidence is not silently reassigned to the modified documentation snapshot.
+Stop the foreground container with Ctrl+C when finished. Its writable-layer session data is disposable.
 
-Current R8 evidence and limitations are retained in [validation/R8_RELEASE_STATUS.md](validation/R8_RELEASE_STATUS.md).
+### Native Python development
 
-## Local installation and usage
-
-Requirements: Python 3.11+; LibreOffice Impress is required for rendering and full artifact tests; Node.js is required for the frontend syntax check. Docker is the most reproducible route because the included image installs LibreOffice.
+Use Python 3.12 to align with the container; the package declares Python 3.11+. Real repair verification also requires LibreOffice Impress, suitable fonts, and the installed PyMuPDF dependency. Node.js is needed for the frontend syntax check.
 
 ```bash
 python -m venv .venv
-# Windows PowerShell: .\.venv\Scripts\Activate.ps1
-# macOS/Linux: source .venv/bin/activate
-python -m pip install -e "./backend[dev,agent]"
-
-# Start the API from the repository root.
-python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
+source .venv/bin/activate
+python -m pip install -e './backend[dev,agent]'
+python -c "import app; print(app.__file__)"
+python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000 --workers 1 --no-access-log
 ```
 
-Open `http://127.0.0.1:8000` and use **Try demo venue**, or upload a supported PPTX. Set `GEMINI_API_KEY` only to enable the optional bounded Gemini planner; without it, deterministic planning remains available.
+PowerShell activation: `.\.venv\Scripts\Activate.ps1`. Verify that `app.__file__` resolves to this checkout's `backend/app`, not an unrelated installed `app` package. If LibreOffice is absent on Windows, use the Linux container for rendering; missing system software is not evidence that the renderer tests passed or failed on application behavior.
 
-Run checks from the repository root:
+### Operational limits worth knowing before hosting
+
+- **Exactly one worker and one replica.** Session ownership, expiry, capacity, and planner circuit-breaker state are process-local. This is not a durable multi-worker deployment.
+- Sessions and undownloaded artifacts can be lost on restart, replacement, or expiry. Download important output before closing the workflow. Do not share a session root between independent instances.
+- Treat a session capability as a credential: do not share it, expose request headers, or capture tokens in recordings. Avoid sensitive decks on a public demo.
+- `/health` is liveness; readiness and deep readiness have separate prerequisite/rendering semantics. Do not equate “running” with “ready.”
+- **Known frozen-image limitation:** Docker's native healthcheck targets port **8000**, while startup honors `PORT`. Setting `PORT=8080` can leave HTTP healthy but Docker-native health unhealthy. Use the default local port for this recipe; a source-level correction requires separately qualified release work.
+- `railway.json` specifies deep readiness and a 180-second timeout, but effective Railway settings must be checked independently; do not assume legacy Config as Code loaded. This README does not change or authorize any production resource.
+
+## Release identity and evidence
+
+This repository publishes **RC5.3 FINAL-01 r2** application source from the qualified archive. README and repository-hygiene changes are publication metadata, not a newly qualified application build.
+
+| Evidence | Exact identity or scope |
+|---|---|
+| Original candidate | `deckfit-ai-next-founders-rc5-3-final01-r2.zip` |
+| Archive SHA-256 | `3d6bc28d81a5423f35d41b262bb9ba15885fcc5eb16b304dcfa8ff8e7df90479` |
+| Linux/POSIX application-source fingerprint | `0d84f135419cdb1b9e3c5918fb04da5c40c4a9e591213c332f580670b43ead53` |
+| Historical exact-archive local qualification, October 15, 2026 | 208 non-resource + 46 isolated renderer/resource tests = **254/254**, complete release gate passed |
+| Publication checks before the initial push | 208 non-resource tests, claim lint, frontend syntax, and unchanged application-source identity passed |
+| Provider evidence | Deterministic planning exercised; genuine Gemini invocation not established |
+
+The historical complete gate is not a fresh run of every clone, current deployment, or newly resolved dependency environment. The original archive and external raw qualification bundle are **not included in this repository**. See the [release handoff](docs/RELEASE_HANDOFF_RC53_R2.md) for provenance and limitations; do not treat a documentation table as a substitute for raw logs.
+
+Compute the application fingerprint on Linux/POSIX:
 
 ```bash
+python scripts/compute_source_fingerprint.py
+```
+
+The unchanged fingerprint algorithm sorts native paths: Windows can produce a different value from identical bytes. The ZIP SHA-256 is the cross-platform distribution identity. The source fingerprint covers a defined subset, **not** every repository file, resolved dependencies, an image digest, or a signed deployment attestation. Verify those identities separately.
+
+### Reproduce the checks
+
+From the repository root with development dependencies installed, on Linux:
+
+```bash
+export PYTHONPATH="$PWD/backend"
+python -c "import app; print(app.__file__)"
 python scripts/claim_lint.py
 python scripts/check_frontend_js.py
-python -m compileall -q backend/app scripts
-python scripts/http_smoke.py
+python -m pytest backend/tests -m 'not resource' -q
 python scripts/release_gate.py --full
 ```
 
-`release_gate.py --full` invokes LibreOffice-backed tests in isolated processes. Do not describe the full renderer gate as passed on a machine where LibreOffice is unavailable.
+PowerShell import isolation: `$env:PYTHONPATH = (Resolve-Path ./backend).Path` before invoking pytest. The complete gate runs renderer/resource cases in isolated processes and requires actual LibreOffice. Do not increase timeouts, omit failing cases, or count a stalled run as a pass. A normal container build installs runtime dependencies, not the full development-test toolchain.
 
-## Development history and AI disclosure
+### Verify a running instance independently
 
-DeckFit AI builds on earlier engineering work internally named **Venue Agent**, including prior WCC-era foundations. During ForgeHacks, the project received release hardening, adversarial PPTX/renderer coverage, bounded Gemini provenance work, public deployment verification, and ForgeHacks-specific presentation material. The repository does not claim that every line originated during the event.
+With the local application running, execute from the checkout:
 
-Development-time AI assistance (including OpenAI Codex) supported implementation, test review, and documentation. That assistance is separate from the runtime product: runtime Gemini receives only bounded derived metadata and has no authority to execute edits or verify outcomes. See [AI tool disclosure](docs/AI_TOOL_DISCLOSURE.md).
+```bash
+python scripts/live_deployment_check.py \
+  --base-url http://127.0.0.1:8000 \
+  --expected-source-fingerprint 0d84f135419cdb1b9e3c5918fb04da5c40c4a9e591213c332f580670b43ead53 \
+  --full
+```
 
-## Historical ForgeHacks submission (archived context)
+For an authorized hosted check, replace only the base URL. The full verifier creates and deletes its own demo session, exercises real repair and download checks, and fails on an unexpected source identity. Inspect the script for its exact assertions; separately exercise FINAL-01 refusal and any acceptance checks beyond its coverage. Add `--require-gemini` only when deliberately requiring real Gemini provenance; deterministic fallback must not be reported as a provider success.
 
-- Event: **ForgeHacks Online 2026**
-- Track: **AI + Creativity**
-- Repository: [saikiranpulagalla/deckfit-ai](https://github.com/saikiranpulagalla/deckfit-ai)
-- Live demo: [venue-agent-production.up.railway.app](https://venue-agent-production.up.railway.app/)
-- Demo video: _public 2–4 minute link to be added before submission_
+For production acceptance, also record actual deployment/image identities, runtime package versions, effective healthcheck and replica settings, public browser behavior, and sanitized logs. A source hash reported by a server is useful evidence, not protection against a dishonest server.
 
-For a concise evaluator map, see [ForgeHacks judging map](docs/FORGEHACKS_JUDGING_MAP.md). For known boundaries, see [claims and limitations](docs/CLAIMS_AND_LIMITATIONS.md).
+## Startup hypothesis and evidence to collect
 
-## License and notices
+The initial buyer hypothesis is a recurring training provider: reuse of a text-heavy deck across rooms may make venue-specific preflight more valuable than a one-off slide edit. This is **not validated demand, traction, or proven willingness to pay**.
 
-See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for third-party notices.
+Evaluate a free supported-deck trial, per-deck credits, and monthly trainer credits before setting prices. Measure supported-upload rate, repairable-upload rate, successful completion, time to result, review/refusal reasons, repeat use, and attributable support effort. Ask trainers to compare the workflow with their current process; record consented observations, not invented testimonials.
 
-</details>
+```text
+Contribution per successful supported deck
+  = collected revenue
+  - compute - AI provider cost - storage/network
+  - attributable support - payment costs
+```
+
+Refused or unrepairable uploads still consume intake/analysis/support resources. Allocate those costs across successful decks and test sensitivity to the supported-and-repairable fraction; do not assume every upload earns revenue. No price, revenue, savings, or customer result is asserted here.
+
+## A truthful five-minute Next Founders demo
+
+Give technical execution, innovation/UX, business/finance, and communication visible evidence—not just a test-count slide.
+
+- **0:00–0:35 — Problem and buyer:** show the room measurements and explain the recurring-trainer hypothesis.
+- **0:35–2:00 — Working product:** run the supported demo, inspect candidates, approve the exact plan, and download the actual result.
+- **2:00–3:05 — Technical safety:** explain bounded choices, independent verification, output-hash binding, and the FINAL-01 refusal. Show what the product will not claim.
+- **3:05–4:10 — Business:** distinguish measured technical outcomes from unvalidated buyer assumptions; show the unit-economics inputs still to measure.
+- **4:10–4:45 — Scalability:** acknowledge today's single-instance ephemeral architecture. Durable ownership and isolated renderer workers are future engineering, not implemented scale claims.
+- **4:45–5:00 — Outcome:** show the final server state and downloaded artifact; state whether planning was deterministic or genuinely provider-backed.
+
+Use a real recording and sanitize capabilities/credentials. Do not present deterministic fallback as Gemini, a review result as `VERIFIED`, or local evidence as public deployment proof.
+
+## Repository map and provenance
+
+- [`backend/app`](backend/app) — intake/security, sessions, planner, PPTX operations, simulation, and verification.
+- [`backend/tests`](backend/tests) — unit, adversarial, API, and renderer/resource regressions.
+- [`frontend/static/index.html`](frontend/static/index.html) — browser workflow and planner provenance.
+- [`scripts`](scripts) — release gate, identity, smoke, claim, and live verification tools.
+- [`reference`](reference) and [`demo`](demo) — versioned reference data and project demo.
+- [`docs/RELEASE_HANDOFF_RC53_R2.md`](docs/RELEASE_HANDOFF_RC53_R2.md) — current publication scope and limitations.
+
+DeckFit builds on earlier work internally named **Venue Agent**, including prior WCC-era foundations and ForgeHacks hardening. The new repository is not a claim that all software originated here or during Next Founders. Historical R8/ForgeHacks documents remain for provenance and regression contracts; their results are not reassigned to r2. See [historical R8 evidence](validation/R8_RELEASE_STATUS.md), [AI development-tool disclosure](docs/AI_TOOL_DISCLOSURE.md), and [claims and limitations](docs/CLAIMS_AND_LIMITATIONS.md).
+
+Development-time AI assistance is separate from runtime Gemini execution. Third-party notices are retained in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md); those notices do not themselves grant a license to this project's code.
