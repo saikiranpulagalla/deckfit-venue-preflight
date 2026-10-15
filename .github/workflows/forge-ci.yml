@@ -1,0 +1,40 @@
+name: DeckFit AI Next Founders Release Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VENUE_MAX_CONCURRENT_RENDERS: "1"
+      VENUE_RELEASE_ID: ci-${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/pyproject.toml
+      - name: Install system renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libreoffice-impress fonts-dejavu-core
+      - name: Install app and test dependencies
+        run: python -m pip install -e './backend[dev,agent]'
+      - name: Compile Python
+        run: python -m compileall -q backend/app scripts
+      - name: Judge-facing claim lint
+        run: python scripts/claim_lint.py
+      - name: Frontend JavaScript syntax
+        run: python scripts/check_frontend_js.py
+      - name: Offline evaluation scoreboard
+        run: python scripts/evaluation_scoreboard.py --output validation/evaluation/ci-scoreboard.json
+      - name: Source-bound mandatory release gate
+        run: python scripts/release_gate.py --full
+      - name: Production-command HTTP smoke
+        run: python scripts/http_smoke.py

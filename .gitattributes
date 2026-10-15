@@ -1,0 +1,2 @@
+# Release identity is byte-sensitive. Preserve source and binary bytes on checkout.
+* -text

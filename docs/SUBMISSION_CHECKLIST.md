@@ -1,0 +1,32 @@
+# ForgeHacks 2026 Submission Checklist
+
+- [ ] Track selected: **AI + Creativity**
+- [ ] Public description explains “responsive design for physical spaces” without claiming universal readability
+- [ ] Live URL tested in a fresh/incognito browser
+- [ ] Production deployment is exactly one worker / one replica
+- [ ] HTTPS is enabled by the hosting platform
+- [ ] `/health/deep-readiness` returns `ready`
+- [ ] `/health` exposes the final `release_id`
+- [ ] Fresh-browser session token flow works and the token never appears in a URL
+- [ ] Refresh recovery works in the same tab
+- [ ] GitHub/reviewer source is reachable
+- [ ] Build-window provenance is accurate
+- [ ] AI/tool disclosure is complete
+- [ ] Runtime AI data boundary is disclosed
+- [ ] User-research findings, if used, contain real counts only
+- [ ] Demo video is public/unlisted and **2–4 minutes**
+- [ ] Video link works while logged out
+- [ ] Project-owned demo fixture works with one click
+- [ ] Final measured release metrics are frozen
+- [ ] No P0/P1 release blocker is open
+- [ ] Original deck immutability is demonstrated
+- [ ] Exact approval gate is demonstrated
+- [ ] Unsupported/refusal case is demonstrated
+- [ ] Saved-artifact re-verification is demonstrated
+- [ ] `VERIFIED` limitation is visible in UI/video/README
+- [ ] No “AVIXA certified”, “WCAG compliant”, or universal readability claim appears
+- [ ] Third-party notices and demo asset rights are checked
+- [ ] Public full deployment checker saved as `validation/evaluation/live-deployment-final.json`
+- [ ] Live planner probe saved as `validation/evaluation/planner-probe-final.json` with zero fallbacks
+- [ ] `scripts/submission_freeze.py` emits `FINAL_SUBMISSION_READY.json`
+- [ ] Demo, GitHub and deployment all identify the same final release

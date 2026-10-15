@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "instructions": "After reviewing blinded rendered outputs for a study case, record the human-preferred candidate IDs. Do not edit planner_study_cases.json after ratings begin.",
+  "ratings": [
+    {"case_id": "two-body-balanced", "preferred_candidate_ids": [], "reviewer_note": ""},
+    {"case_id": "three-issue-budget", "preferred_candidate_ids": [], "reviewer_note": ""},
+    {"case_id": "no-feasible-plan", "preferred_candidate_ids": [], "reviewer_note": "Expected preference is an empty plan if no feasible plan exists."}
+  ]
+}
