@@ -144,6 +144,8 @@ This repository publishes **RC5.3 FINAL-01 r2** application source from the qual
 
 The historical complete gate is not a fresh run of every clone, current deployment, or newly resolved dependency environment. The original archive and external raw qualification bundle are **not included in this repository**. See the [release handoff](docs/RELEASE_HANDOFF_RC53_R2.md) for provenance and limitations; do not treat a documentation table as a substitute for raw logs.
 
+A subsequent [independent FINAL-01 qualification](docs/FINAL01_INDEPENDENT_QUALIFICATION.md) reproduced the RC5.2 defect, confirmed r2 refusal, and reran the unchanged full gate: **254/254 passed**. The report links the newly published gate log, real HTTP outcomes and supplemental integrity checks. This is local qualification, not a fresh production acceptance.
+
 Compute the application fingerprint on Linux/POSIX:
 
 ```bash

@@ -1,0 +1,112 @@
+[
+  {
+    "case": "direct",
+    "upload_status": 200,
+    "summary": {
+      "total_detected_text_elements": 4,
+      "analyzed_elements": 3,
+      "not_analyzed_elements": 1,
+      "below_target_elements": 2,
+      "meets_target_elements": 1,
+      "boundary_review_elements": 0,
+      "outside_reference_elements": 0,
+      "unsupported_visible_content_elements": 1
+    },
+    "plan_state": "AWAITING_APPROVAL",
+    "final_state": "REVIEW_REQUIRED",
+    "verification": {
+      "output_sha256": "a7a252fc219998768c8950b278993d3c2845a8441d1375f6bf03d95e7f34cf0d",
+      "source_sha256_unchanged": true,
+      "protected_text_unchanged": true,
+      "output_reopens": true,
+      "target_improved": true,
+      "analysis_universe_preserved": true,
+      "layout_safe": true,
+      "no_unknown_or_uncovered": false,
+      "final_state": "REVIEW_REQUIRED",
+      "reasons": [
+        "unknown_or_uncovered_content_remains"
+      ],
+      "target_improvements": {
+        "s1-sh3": true,
+        "s1-sh4": true
+      },
+      "target_coverage_before": 0.3333333333333333,
+      "target_coverage_after": 1.0
+    },
+    "download_status": 200,
+    "download_sha256": "a7a252fc219998768c8950b278993d3c2845a8441d1375f6bf03d95e7f34cf0d"
+  },
+  {
+    "case": "wrapped",
+    "upload_status": 200,
+    "summary": {
+      "total_detected_text_elements": 3,
+      "analyzed_elements": 3,
+      "not_analyzed_elements": 0,
+      "below_target_elements": 2,
+      "meets_target_elements": 1,
+      "boundary_review_elements": 0,
+      "outside_reference_elements": 0,
+      "unsupported_visible_content_elements": 0
+    },
+    "plan_state": "AWAITING_APPROVAL",
+    "final_state": "VERIFIED",
+    "verification": {
+      "output_sha256": "413ec30d132e6b4a836f64bc7683e8aca77f2a526ba9935030c2856c6d473c68",
+      "source_sha256_unchanged": true,
+      "protected_text_unchanged": true,
+      "output_reopens": true,
+      "target_improved": true,
+      "analysis_universe_preserved": true,
+      "layout_safe": true,
+      "no_unknown_or_uncovered": true,
+      "final_state": "VERIFIED",
+      "reasons": [],
+      "target_improvements": {
+        "s1-sh3": true,
+        "s1-sh4": true
+      },
+      "target_coverage_before": 0.3333333333333333,
+      "target_coverage_after": 1.0
+    },
+    "download_status": 200,
+    "download_sha256": "413ec30d132e6b4a836f64bc7683e8aca77f2a526ba9935030c2856c6d473c68"
+  },
+  {
+    "case": "demo",
+    "upload_status": 200,
+    "summary": {
+      "total_detected_text_elements": 3,
+      "analyzed_elements": 3,
+      "not_analyzed_elements": 0,
+      "below_target_elements": 2,
+      "meets_target_elements": 1,
+      "boundary_review_elements": 0,
+      "outside_reference_elements": 0,
+      "unsupported_visible_content_elements": 0
+    },
+    "plan_state": "AWAITING_APPROVAL",
+    "final_state": "VERIFIED",
+    "verification": {
+      "output_sha256": "135dc133b27fd84cd20e12a022e782b7e12efe3637ad6983ef383c4f28c3057a",
+      "source_sha256_unchanged": true,
+      "protected_text_unchanged": true,
+      "output_reopens": true,
+      "target_improved": true,
+      "analysis_universe_preserved": true,
+      "layout_safe": true,
+      "no_unknown_or_uncovered": true,
+      "final_state": "VERIFIED",
+      "reasons": [],
+      "target_improvements": {
+        "s1-sh3": true,
+        "s1-sh4": true
+      },
+      "target_coverage_before": 0.3333333333333333,
+      "target_coverage_after": 1.0
+    },
+    "download_status": 200,
+    "download_sha256": "135dc133b27fd84cd20e12a022e782b7e12efe3637ad6983ef383c4f28c3057a"
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "dependencies": {
+    "starlette": "1.7.0",
+    "h11": "0.16.0",
+    "google-genai": "1.75.0",
+    "pip": "24.0",
+    "fastapi": "0.143.0",
+    "uvicorn": "0.54.0",
+    "packaging": "26.3",
+    "google-auth": "2.61.0",
+    "annotated-types": "0.8.0",
+    "Pygments": "2.21.0",
+    "iniconfig": "2.3.1",
+    "xlsxwriter": "3.2.9",
+    "pillow": "12.3.0",
+    "pycparser": "3.11",
+    "pluggy": "1.6.0",
+    "idna": "3.20",
+    "tenacity": "9.1.4",
+    "annotated-doc": "0.0.5",
+    "cryptography": "50.0.2",
+    "sniffio": "1.3.1",
+    "pyasn1": "0.6.4",
+    "websockets": "16.1.1",
+    "charset-normalizer": "3.5.2",
+    "venue-agent": "0.1.0",
+    "distro": "1.9.0",
+    "python-multipart": "0.0.32",
+    "anyio": "4.15.1",
+    "typing_extensions": "4.16.0",
+    "urllib3": "2.8.0",
+    "pydantic": "2.14.0",
+    "httpx": "0.28.1",
+    "pyasn1_modules": "0.4.2",
+    "httpcore": "1.0.9",
+    "requests": "2.34.2",
+    "cffi": "2.1.1",
+    "pymupdf": "1.28.2",
+    "click": "8.5.0",
+    "certifi": "2026.7.22",
+    "lxml": "6.1.3",
+    "pytest": "9.1.1",
+    "pydantic_core": "2.50.0",
+    "typing-inspection": "0.4.4",
+    "opentelemetry-api": "1.45.1",
+    "python-pptx": "1.0.2"
+  },
+  "libreoffice": "LibreOffice 24.2.7.2 420(Build:2)",
+  "libreoffice_package": "4:24.2.7-0ubuntu0.24.04.7",
+  "source_directory": "/home/saiki/deckfit-final01-independent-y32fswmw/r2/deckfit-ai-main",
+  "native_directory": "/home/saiki/deckfit-final01-independent-y32fswmw",
+  "source_fingerprint": "0d84f135419cdb1b9e3c5918fb04da5c40c4a9e591213c332f580670b43ead53",
+  "archives": {
+    "rc52": {
+      "path": "/mnt/c/Users/saiki/Downloads/deckfit-ai-next-founders-rc5-2-qualified.zip",
+      "sha256": "42321bad8ddd76f221e10e732f5f16c3cf015a86683e0d378fa98179f2aa939e"
+    },
+    "r2": {
+      "path": "/mnt/c/Users/saiki/.codex/visualizations/2026/10/14/01a13ab0-7f1d-7131-89d3-d03f542582ef/rc53-final01/deckfit-ai-next-founders-rc5-3-final01-r2.zip",
+      "sha256": "3d6bc28d81a5423f35d41b262bb9ba15885fcc5eb16b304dcfa8ff8e7df90479"
+    }
+  },
+  "distribution_diff": [
+    "backend/app/security/intake.py",
+    "backend/tests/adversarial/test_final01_compatibility.py",
+    "docs/FINAL01_COMPATIBILITY_POLICY.md"
+  ]
+}

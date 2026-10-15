@@ -1,0 +1,163 @@
+[
+  {
+    "case": "wrapped-slide",
+    "upload_status": 400,
+    "detail": "Unsupported presentation compatibility content (mc:AlternateContent)"
+  },
+  {
+    "case": "wrapped-layout",
+    "upload_status": 400,
+    "detail": "Unsupported presentation compatibility content (mc:AlternateContent)"
+  },
+  {
+    "case": "wrapped-master",
+    "upload_status": 400,
+    "detail": "Unsupported presentation compatibility content (mc:AlternateContent)"
+  },
+  {
+    "case": "relocated-layout",
+    "upload_status": 400,
+    "detail": "Unsupported presentation compatibility content (mc:AlternateContent)"
+  },
+  {
+    "case": "relocated-master",
+    "upload_status": 400,
+    "detail": "Unsupported presentation compatibility content (mc:AlternateContent)"
+  },
+  {
+    "case": "small_text",
+    "upload_status": 200,
+    "source_sha256": "bdb9aec3354d848fc6cd0bad47d76a30e6b187b9a8736c457bf954b5f1b32a26",
+    "analyze_status": 200,
+    "analysis_summary": {
+      "total_detected_text_elements": 2,
+      "analyzed_elements": 2,
+      "not_analyzed_elements": 0,
+      "below_target_elements": 1,
+      "meets_target_elements": 1,
+      "boundary_review_elements": 0,
+      "outside_reference_elements": 0,
+      "unsupported_visible_content_elements": 0
+    },
+    "plan_status": 200,
+    "planner_used": "deterministic",
+    "apply_status": 200,
+    "final_state": "VERIFIED",
+    "verification": {
+      "output_sha256": "af83c3fc026b1a3d42e196aa7ad8cc6b7d040cbbcacf3f0dcd31e5a9c59287c0",
+      "source_sha256_unchanged": true,
+      "protected_text_unchanged": true,
+      "output_reopens": true,
+      "target_improved": true,
+      "analysis_universe_preserved": true,
+      "layout_safe": true,
+      "no_unknown_or_uncovered": true,
+      "final_state": "VERIFIED",
+      "reasons": [],
+      "target_improvements": {
+        "s1-sh3": true
+      },
+      "target_coverage_before": 0.5,
+      "target_coverage_after": 1.0
+    },
+    "download_status": 200,
+    "download_sha256": "af83c3fc026b1a3d42e196aa7ad8cc6b7d040cbbcacf3f0dcd31e5a9c59287c0",
+    "replan_status": 409,
+    "reanalyze_status": 409,
+    "output_retained_identically": true,
+    "delete_status": 200,
+    "after_delete_status": 404
+  },
+  {
+    "case": "demo",
+    "upload_status": 200,
+    "source_sha256": "dff38d64a845368c85195fbfcf54e56e711d5f56338a15f9bb40ab844aa9d626",
+    "analyze_status": 200,
+    "analysis_summary": {
+      "total_detected_text_elements": 3,
+      "analyzed_elements": 3,
+      "not_analyzed_elements": 0,
+      "below_target_elements": 2,
+      "meets_target_elements": 1,
+      "boundary_review_elements": 0,
+      "outside_reference_elements": 0,
+      "unsupported_visible_content_elements": 0
+    },
+    "plan_status": 200,
+    "planner_used": "deterministic",
+    "apply_status": 200,
+    "final_state": "VERIFIED",
+    "verification": {
+      "output_sha256": "2b5ef3cc5cbcfabaeb375de9268fd76648759ab19479e5fc42299ccefc2b7fca",
+      "source_sha256_unchanged": true,
+      "protected_text_unchanged": true,
+      "output_reopens": true,
+      "target_improved": true,
+      "analysis_universe_preserved": true,
+      "layout_safe": true,
+      "no_unknown_or_uncovered": true,
+      "final_state": "VERIFIED",
+      "reasons": [],
+      "target_improvements": {
+        "s1-sh3": true,
+        "s1-sh4": true
+      },
+      "target_coverage_before": 0.3333333333333333,
+      "target_coverage_after": 1.0
+    },
+    "download_status": 200,
+    "download_sha256": "2b5ef3cc5cbcfabaeb375de9268fd76648759ab19479e5fc42299ccefc2b7fca",
+    "replan_status": 409,
+    "reanalyze_status": 409,
+    "output_retained_identically": true,
+    "delete_status": 200,
+    "after_delete_status": 404
+  },
+  {
+    "case": "direct",
+    "upload_status": 200,
+    "source_sha256": "6f168ce96789e259092d83aeea02dea160abe4b844fc983c2c0e90163cb836a7",
+    "analyze_status": 200,
+    "analysis_summary": {
+      "total_detected_text_elements": 4,
+      "analyzed_elements": 3,
+      "not_analyzed_elements": 1,
+      "below_target_elements": 2,
+      "meets_target_elements": 1,
+      "boundary_review_elements": 0,
+      "outside_reference_elements": 0,
+      "unsupported_visible_content_elements": 1
+    },
+    "plan_status": 200,
+    "planner_used": "deterministic",
+    "apply_status": 200,
+    "final_state": "REVIEW_REQUIRED",
+    "verification": {
+      "output_sha256": "5ce32c1f2d7a3d39f1ef42ca7b3fbfe6f90314caccdf2bf1e62a7630a9d8908e",
+      "source_sha256_unchanged": true,
+      "protected_text_unchanged": true,
+      "output_reopens": true,
+      "target_improved": true,
+      "analysis_universe_preserved": true,
+      "layout_safe": true,
+      "no_unknown_or_uncovered": false,
+      "final_state": "REVIEW_REQUIRED",
+      "reasons": [
+        "unknown_or_uncovered_content_remains"
+      ],
+      "target_improvements": {
+        "s1-sh3": true,
+        "s1-sh4": true
+      },
+      "target_coverage_before": 0.3333333333333333,
+      "target_coverage_after": 1.0
+    },
+    "download_status": 200,
+    "download_sha256": "5ce32c1f2d7a3d39f1ef42ca7b3fbfe6f90314caccdf2bf1e62a7630a9d8908e",
+    "replan_status": 409,
+    "reanalyze_status": 409,
+    "output_retained_identically": true,
+    "delete_status": 200,
+    "after_delete_status": 404
+  }
+]

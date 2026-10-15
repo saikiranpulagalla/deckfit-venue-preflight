@@ -1,0 +1,31 @@
+HTTP SMOKE PASS
+{
+  "readiness": {
+    "status": "ready",
+    "reference_profile": "PUBLIC_BDM_REFERENCE_V1",
+    "release_id": "deckfit-nextfounders-rc5-local",
+    "source_fingerprint": "0d84f135419cdb1b9e3c5918fb04da5c40c4a9e591213c332f580670b43ead53",
+    "renderer_version": "LibreOffice 24.2.7.2 420(Build:2)",
+    "demo_fixture": true,
+    "planner_mode": "deterministic_fallback",
+    "session_ttl_seconds": 2700,
+    "max_sessions": 24,
+    "per_client_session_limit": 8,
+    "session_backend": "process_local_ephemeral",
+    "required_replica_count": 1,
+    "max_concurrent_renders": 1
+  },
+  "deep_readiness": {
+    "status": "ready",
+    "reference_profile": "PUBLIC_BDM_REFERENCE_V1",
+    "release_id": "deckfit-nextfounders-rc5-local",
+    "source_fingerprint": "0d84f135419cdb1b9e3c5918fb04da5c40c4a9e591213c332f580670b43ead53",
+    "renderer_version": "LibreOffice 24.2.7.2 420(Build:2)",
+    "renderer_probe": "real_demo_render_pass",
+    "session_backend": "process_local_ephemeral",
+    "required_replica_count": 1,
+    "max_concurrent_renders": 1
+  },
+  "demo_state": "UPLOADED",
+  "capability_status": "PASS"
+}

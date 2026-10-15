@@ -1,0 +1,173 @@
+{
+  "cases": [
+    {
+      "case": "slide-visible",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "slide-empty",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "slide-metadata",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "layout-visible",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "layout-empty",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "layout-metadata",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "master-visible",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "master-empty",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "master-metadata",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "choice",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "fallback",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "both",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "hidden",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "different-branches",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "nested",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "over-editable-text",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "inside-group",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    },
+    {
+      "case": "placeholder",
+      "http_status": 400,
+      "result": "INTAKE_REFUSAL; verifier not reached",
+      "detail": "Unsupported presentation compatibility content (mc:AlternateContent)",
+      "source_unchanged": true,
+      "session_accounting_clean": true
+    }
+  ],
+  "real_integrity_workflow": {
+    "final_before_tamper": "VERIFIED",
+    "planner_used": "deterministic",
+    "download_sha256": "966dbefa9db9a1f65e721852fb838f6dd61e8c56968dc7c620393fc6407ac609",
+    "server_output_sha256": "966dbefa9db9a1f65e721852fb838f6dd61e8c56968dc7c620393fc6407ac609",
+    "source_unchanged": true,
+    "stale_approval_http": 409,
+    "replay_http": 409,
+    "completed_replan_and_reanalysis_http": 409,
+    "artifact_preserved_after_refusals": true,
+    "tampered_download_http": 409,
+    "tampered_state": "FAILED",
+    "after_delete_http": 404
+  },
+  "refusal_cases_passed": 18,
+  "ordinary_intake_controls_passed": 4,
+  "capacity_after_refusals": "PASS",
+  "different_branch_render": {
+    "red_fill_drawings": 0,
+    "blue_fill_drawings": 1,
+    "pdf": "/mnt/c/Users/saiki/.codex/visualizations/2026/10/14/01a13ab0-7f1d-7131-89d3-d03f542582ef/final01-independent-20261015/matrix/different-branches-render/different-branches.pdf"
+  },
+  "raw_parser_records": 3,
+  "raw_parser_unsupported_records": 0,
+  "raw_parser_is_not_authorized_intake": true
+}

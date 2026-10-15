@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "base_url": "http://127.0.0.1:46299",
+  "full_judge_path": true,
+  "checks": {
+    "source_fingerprint": "PASS",
+    "health": "PASS",
+    "readiness": "PASS",
+    "deep_readiness": "PASS",
+    "homepage": "PASS",
+    "security_headers": "PASS",
+    "demo_session": "PASS",
+    "analyze": "PASS",
+    "plan": "PASS",
+    "approve_apply_verify": "PASS",
+    "download_hash_binding": "PASS",
+    "session_delete": "PASS"
+  },
+  "latency_ms": {
+    "health": 32.9,
+    "readiness": 4.9,
+    "deep_readiness": 1038.7,
+    "homepage": 7.3,
+    "demo_session": 2.4,
+    "analyze": 8243.6,
+    "plan": 2254.6,
+    "approve_apply_verify": 3301.8,
+    "download": 1.8
+  },
+  "release_id": "deckfit-nextfounders-rc5-local",
+  "planner_mode": "deterministic_fallback",
+  "source_fingerprint": "0d84f135419cdb1b9e3c5918fb04da5c40c4a9e591213c332f580670b43ead53",
+  "renderer_version": "LibreOffice 24.2.7.2 420(Build:2)",
+  "source_sha256": "dff38d64a845368c85195fbfcf54e56e711d5f56338a15f9bb40ab844aa9d626",
+  "planner_used": "deterministic",
+  "fallback_used": false,
+  "verified_output_sha256": "bcb5b5c618ef24cdbeba0c4fc558145028a17885d3728082a6f41e2f75d8b664",
+  "downloaded_output_sha256": "bcb5b5c618ef24cdbeba0c4fc558145028a17885d3728082a6f41e2f75d8b664",
+  "judge_path_total_ms": 13804.2
+}
